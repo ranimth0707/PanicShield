@@ -1,0 +1,21 @@
+# Environment
+.env
+.env.local
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Claude local session files
+.claude/settings.local.json
+.claude/backups/
+.claude/debug/
+
+# onchainos binary (auto-installed)
+~/.local/bin/onchainos
