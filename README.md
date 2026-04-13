@@ -2,18 +2,19 @@
 
 **From Panic Sell to PanicShield.**
 
-An AI agent skill that analyzes your portfolio and tells you **when to hold, partially exit, or fully exit** based on data.
+An AI agent skill that analyzes your portfolio and tells you **when to hold, partially exit, or fully exit** — based on data, not emotions.
+
+Built for the [OKX Build X Hackathon](https://web3.okx.com/xlayer/build-x-hackathon) | Skills Arena
 
 ---
 
 ## Problem
 
-Every crypto holder has experienced panic selling
-dumping tokens at a loss because of fear, uncertainty, or herd mentality. On the flip side, many hold too long and watch profits evaporate.
+Every crypto holder has experienced panic selling — dumping tokens at a loss because of fear, uncertainty, or herd mentality. On the flip side, many hold too long and watch profits evaporate.
 
-The problem isn't a lack of willpower. The problem is **a lack of actionable, real time intelligence** at the moment of decision.
+The problem isn't a lack of willpower. The problem is **a lack of actionable, real-time intelligence** at the moment of decision.
 
-**PanicShield** replaces emotional decision making with data driven exit strategies.
+**PanicShield** replaces emotional decision-making with data-driven exit strategies.
 
 ---
 
@@ -56,6 +57,10 @@ PanicShield:
 ---
 
 ## Architecture Overview
+
+PanicShield chains **6 Onchain OS skills** in a sequential pipeline:
+
+```
 User Input ("scan portfolio" / "check token X")
         │
         ▼
