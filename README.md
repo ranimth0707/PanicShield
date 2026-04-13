@@ -77,9 +77,9 @@ PanicShield orchestrates **6 OKX Onchain OS skills** in a sequential analysis pi
 ```
 User Input
     │
-    ├─── "Scan portfolio aku" ──────────────────────────────────┐
+    ├─── "Scan my portfolio" ───────────────────────────────────┐
     │                                                           │
-    └─── "Cek token [X]" ─────────────────────────────┐        │
+    └─── "Check token [X]" ────────────────────────────┐        │
                                                        │        │
                                           Single Token │  All Tokens
                                           Deep Dive    │  (top 10 by $)
@@ -231,10 +231,10 @@ Open Claude Code in the project directory, then:
 
 ```
 # Scan full portfolio
-"Scan portfolio aku"
+"Scan my portfolio"
 
 # Deep dive a specific token
-"Cek token XSHIB"
+"Check token XSHIB"
 "Check token 0xe8e8a1df1e26277a2875a0bda912ab9f19843a53"
 
 # After receiving verdict
