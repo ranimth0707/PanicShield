@@ -4,22 +4,19 @@
 
 ### *"From Panic Sell to PanicShield"*
 
-**An AI-powered on-chain exit strategy agent built for the OKX Build X Hackathon — Skills Arena**
+**An AI powered on chain exit strategy agent**
 
 [![Built on X Layer](https://img.shields.io/badge/Built%20on-X%20Layer-blue?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkw0IDZWMTJMMTIgMjJMMjAgMTJWNkwxMiAyWiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=)](https://www.okx.com/xlayer)
 [![Powered by Onchain OS](https://img.shields.io/badge/Powered%20by-Onchain%20OS-black?style=flat-square)](https://web3.okx.com)
-[![OKX Hackathon](https://img.shields.io/badge/OKX-Build%20X%20Hackathon-orange?style=flat-square)](https://dorahacks.io/hackathon/okx-build-x)
-[![Skills Arena](https://img.shields.io/badge/Track-Skills%20Arena-purple?style=flat-square)](#)
-
 </div>
 
 ---
 
 ## 📌 What is PanicShield?
 
-**PanicShield** is a reusable agentic skill that transforms raw on-chain data into clear, actionable exit strategy recommendations — before panic sets in.
+**PanicShield** is a reusable agentic skill that transforms raw on chain data into clear, actionable exit strategy recommendations before panic sets in.
 
-In a volatile market, retail investors often make the worst decisions at the worst time: **panic selling** at the bottom. PanicShield flips this by combining 6 Onchain OS skills into a sequential analysis pipeline that scores every token in your portfolio with a **PanicScore (0–10)** and delivers a three-tier verdict:
+In a volatile market, retail investors often make the worst decisions at the worst time: **panic selling** at the bottom. PanicShield flips this by combining 6 Onchain OS skills into a sequential analysis pipeline that scores every token in your portfolio with a **PanicScore (0–10)** and delivers a three tier verdict:
 
 | Verdict | PanicScore | Action |
 |---------|-----------|--------|
@@ -27,7 +24,7 @@ In a volatile market, retail investors often make the worst decisions at the wor
 | 🟡 **PARTIAL EXIT** | 3 – 5 | Reduce position by 50% to lock in partial safety. |
 | 🔴 **FULL EXIT** | 6 – 10 | Exit now. Simulate and execute swap with one confirmation. |
 
-> "Don't sell in panic. Let PanicShield tell you *when* to sell — and *how much*."
+> "Don't sell in panic. Let PanicShield tell you *when* to sell and *how much*."
 
 ---
 
@@ -37,7 +34,7 @@ PanicShield orchestrates **6 OKX Onchain OS skills** in a sequential analysis pi
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                     🛡️ PANICSHIELD PIPELINE                         │
+│                     🛡️ PANICSHIELD PIPELINE                          │
 ├──────┬──────────────────────────┬────────────────────────────────────┤
 │ Step │ Skill                    │ Purpose                            │
 ├──────┼──────────────────────────┼────────────────────────────────────┤
@@ -48,7 +45,7 @@ PanicShield orchestrates **6 OKX Onchain OS skills** in a sequential analysis pi
 │      │                          │ top holder concentration,          │
 │      │                          │ cluster risk analysis              │
 ├──────┼──────────────────────────┼────────────────────────────────────┤
-│  3   │ okx-dex-market           │ Real-time price, 7-day K-line,     │
+│  3   │ okx-dex-market           │ Real time price, 7-day K line,     │
 │      │                          │ price trend vs. 7d moving avg,     │
 │      │                          │ 24h volume                         │
 ├──────┼──────────────────────────┼────────────────────────────────────┤
@@ -56,7 +53,7 @@ PanicShield orchestrates **6 OKX Onchain OS skills** in a sequential analysis pi
 │      │                          │ detection, phishing flags,         │
 │      │                          │ approval issues, scam tags         │
 ├──────┼──────────────────────────┼────────────────────────────────────┤
-│  5   │ okx-dex-signal           │ Whale / smart money movement —     │
+│  5   │ okx-dex-signal           │ Whale / smart money movement       │
 │      │                          │ are insiders accumulating or       │
 │      │                          │ exiting?                           │
 ├──────┼──────────────────────────┼────────────────────────────────────┤
@@ -64,8 +61,8 @@ PanicShield orchestrates **6 OKX Onchain OS skills** in a sequential analysis pi
 │      │                          │ would you receive? price impact?   │
 │      │                          │ best route? (quote only, no exec)  │
 └──────┴──────────────────────────┴────────────────────────────────────┘
-                                   │
-                                   ▼
+                                  │
+                                  ▼
                     ┌──────────────────────────┐
                     │    🎯 PanicScore 0–10    │
                     │    per token verdict     │
@@ -112,7 +109,7 @@ User Input
 
 ## 🧮 PanicScore Logic
 
-Each token is scored **0–10** based on 6 independent on-chain signals:
+Each token is scored **0–10** based on 6 independent on chain signals:
 
 | Signal | Weight | Trigger Condition | Data Source |
 |--------|--------|-------------------|-------------|
@@ -123,7 +120,7 @@ Each token is scored **0–10** based on 6 independent on-chain signals:
 | 🟡 Holder Concentration | **+1** | Top 10 holders > 60% of total supply | `okx-dex-token` |
 | 🟡 Low Volume | **+1** | 24h trading volume < $50,000 | `okx-dex-market` |
 
-**Security Risk is weighted highest (+3)** because contract-level vulnerabilities are non-recoverable — when a token is a honeypot or rug, every second counts.
+**Security Risk is weighted highest (+3)** because contract level vulnerabilities are non recoverable when a token is a honeypot or rug, every second counts.
 
 ### Score Example
 
@@ -261,7 +258,7 @@ PanicShield uses an OKX Agentic Wallet powered by **TEE (Trusted Execution Envir
 |----------|-------|
 | **EVM Address** | `0xff708a67717304b24076542846511375bf86770d` |
 | **Network** | X Layer (chainIndex: 196) |
-| **Gas Fees** | **FREE** ✨ — X Layer charges zero gas |
+| **Gas Fees** | **FREE** ✨ X Layer charges zero gas |
 | **Signing** | TEE-secured (key never leaves enclave) |
 | **Solana Address** | `EcGLy4BGLRLBgVnwNHCWqeJe9jcj1dUyxNx9aVo35xb` |
 
@@ -275,10 +272,10 @@ PanicShield is built **natively on X Layer** — OKX's EVM-compatible Layer 2 �
 Every PanicShield analysis includes a live exit simulation. On Ethereum, simulating + executing a swap costs $5–$50 in gas. On X Layer: **$0**. This makes PanicShield practical for small positions where gas would otherwise eat into exit proceeds.
 
 ### 2. OKB Ecosystem Alignment
-X Layer's native token is OKB. PanicShield monitors OKB health as part of every portfolio scan, giving users a ground-truth view of the underlying L2 economy before assessing individual tokens.
+X Layer's native token is OKB. PanicShield monitors OKB health as part of every portfolio scan, giving users a ground truth view of the underlying L2 economy before assessing individual tokens.
 
 ### 3. Growing Meme + DeFi Token Ecosystem
-Tokens like XSHIB, XDOG, and other X Layer-native assets are emerging rapidly. PanicShield targets exactly this segment — early-stage, high-volatility tokens where exit timing matters most and panic selling is highest.
+Tokens like XSHIB, XDOG, and other X Layer-native assets are emerging rapidly. PanicShield targets exactly this segment — early stage, high volatility tokens where exit timing matters most and panic selling is highest.
 
 ### 4. Native Agentic Wallet Integration
 The OKX Agentic Wallet is a first-class citizen on X Layer. With TEE-secured signing and zero gas, PanicShield can go from analysis → simulation → execution in a single agent session without the user ever touching a hardware wallet or browser extension.
@@ -391,9 +388,7 @@ PanicShield is designed with a **zero-surprise** safety model:
 
 | Name | Role |
 |------|------|
-| **Rani Mitha Riski** | Solo Builder — Concept, Architecture, Implementation |
-
-Built with ❤️ for the **OKX Build X Hackathon — Skills Arena** using OKX Onchain OS and Claude Code.
+| **Raniii** | Solo Builder — Concept, Architecture, Implementation |
 
 ---
 
@@ -407,6 +402,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 **🛡️ PanicShield — Because panic is the worst exit strategy.**
 
-*Built on [X Layer](https://www.okx.com/xlayer) · Powered by [OKX Onchain OS](https://web3.okx.com/onchainos) · Built with [Claude Code](https://claude.ai/code)*
+*Built on [X Layer](https://www.okx.com/xlayer) · Powered by [OKX Onchain OS](https://web3.okx.com/onchainos)
 
 </div>
