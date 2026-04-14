@@ -8,7 +8,14 @@
 
 [![Built on X Layer](https://img.shields.io/badge/Built%20on-X%20Layer-blue?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkw0IDZWMTJMMTIgMjJMMjAgMTJWNkwxMiAyWiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=)](https://www.okx.com/xlayer)
 [![Powered by Onchain OS](https://img.shields.io/badge/Powered%20by-Onchain%20OS-black?style=flat-square)](https://web3.okx.com)
+
 </div>
+
+---
+
+## ⚠️ Network Access Note
+
+OKX Web3 services may be restricted in certain regions. If you experience connection issues, you may need to use a VPN to access OKX Onchain OS APIs. This is a regional restriction from OKX, not a limitation of PanicShield.
 
 ---
 
@@ -33,7 +40,7 @@ In a volatile market, retail investors often make the worst decisions at the wor
 PanicShield orchestrates **6 OKX Onchain OS skills** in a sequential analysis pipeline per token:
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────────────────────┐
 │                     🛡️ PANICSHIELD PIPELINE                          │
 ├──────┬──────────────────────────┬────────────────────────────────────┤
 │ Step │ Skill                    │ Purpose                            │
@@ -150,6 +157,7 @@ npx skills add okx/onchainos-skills --yes
 ### Skill Detail
 
 #### 1. `okx-wallet-portfolio`
+
 Scans the connected wallet's full token holdings across chains. Returns balance, USD value, and contract addresses for each position.
 
 ```bash
@@ -157,6 +165,7 @@ onchainos portfolio all-balances --address <wallet> --chains "xlayer"
 ```
 
 #### 2. `okx-dex-token`
+
 Fetches token-level intelligence: liquidity pool depth, holder count, holder distribution, and cluster analysis for rug-pull risk detection.
 
 ```bash
@@ -165,6 +174,7 @@ onchainos token holders --address <ca> --chain xlayer
 ```
 
 #### 3. `okx-dex-market`
+
 Retrieves real-time price and 7-day OHLC candlestick data. PanicShield computes the 7-day simple moving average to determine price trend direction.
 
 ```bash
@@ -172,6 +182,7 @@ onchainos market kline --address <ca> --chain xlayer --bar 1D --limit 7
 ```
 
 #### 4. `okx-security`
+
 Runs a full contract security scan: honeypot detection, phishing flags, scam tags, and approval risk assessment.
 
 ```bash
@@ -179,6 +190,7 @@ onchainos security token-scan --address <ca> --chain xlayer
 ```
 
 #### 5. `okx-dex-signal`
+
 Detects smart money and whale behavior: are tracked wallets buying or exiting this token? Signal data includes `soldRatioPercent` and trigger wallet count.
 
 ```bash
@@ -187,6 +199,7 @@ onchainos tracker activities --tracker-type smart_money --chain xlayer
 ```
 
 #### 6. `okx-dex-swap`
+
 Simulates an exit swap (quote only — never executes without explicit user confirmation). Returns expected output, price impact, and optimal DEX routing.
 
 ```bash
@@ -207,24 +220,44 @@ onchainos swap execute --from <ca> --to <usdc> --readable-amount <amount> --chai
 - Node.js 18+
 - An OKX account (for Agentic Wallet login)
 
-### Installation
+### Step 1: Install PanicShield
+
+Run this single command it installs PanicShield + all 14 OKX Onchain OS skills automatically:
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/ranimth0707/panicshield.git
-cd panicshield
-
-# 2. Install all Onchain OS skills
-npx skills add okx/onchainos-skills --yes
-
-# 3. The onchainos CLI will be installed automatically on first skill run
-#    Or install manually:
-curl -sSL https://raw.githubusercontent.com/okx/onchainos-skills/v2.2.8/install.sh | sh
+npx skills add ranimth0707/PanicShield
 ```
 
-### Usage
+### Step 2: Setup Agentic Wallet
 
-Open Claude Code in the project directory, then:
+On first use, PanicShield will prompt for email login:
+
+```bash
+onchainos login youremail@gmail.com --locale en-US
+```
+
+A verification `<OTP_CODE>` will be sent to your email. Enter the code and your wallet is ready.
+
+### Step 3: Deposit Agentic Wallet
+
+You will receive wallet address:
+
+```
+EVM: 0x...
+SVM: EGLb....
+```
+
+Deposit tiny amount OKB (Gas fees on X Layer are **FREE**.) for testing.
+
+### Step 4: Start Using PanicShield
+
+| Command | Action |
+|---------|--------|
+| `"Scan my portfolio"` | Analyze all tokens |
+| `"Check token OKB"` | Deep dive single token |
+| `"Swap 1 USDC to OKB"` | Execute swap directly |
+
+**Example:** Open Claude Code in the project directory, then:
 
 ```
 # Scan full portfolio
@@ -239,14 +272,29 @@ Open Claude Code in the project directory, then:
 "Yes, sell all XSHIB"    → executes full exit
 ```
 
-### Agentic Wallet Login
+### Supported Default Tokens on X Layer
 
-On first use, PanicShield will prompt for email login:
+These are verified official tokens on X Layer. You can use token names directly — no need to look up contract addresses:
 
-```bash
-onchainos wallet login your@email.com --locale en-US
-onchainos wallet verify <OTP_CODE>
+| Token | Type | Notes |
+|-------|------|-------|
+| **OKB** | Native | OKX native token, primary trading pair on X Layer |
+| **USDT** | Stablecoin | Tether USD — widely used stablecoin |
+| **USDC** | Stablecoin | USD Coin — widely used stablecoin |
+| **WETH** | Wrapped | Wrapped Ethereum |
+| **WBTC** | Wrapped | Wrapped Bitcoin |
+
+> 💡 **Safety tip:** Always use these verified token names when swapping. Avoid pasting unknown contract addresses to protect yourself from scam tokens.
+
+Example commands:
+
 ```
+"Swap 1 WETH to USDT"
+"Swap 100 USDT to OKB"
+"Swap 0.5 OKB to USDC"
+```
+
+Your AI agent already knows these tokens — just use the names naturally.
 
 ---
 
@@ -264,21 +312,59 @@ PanicShield uses an OKX Agentic Wallet powered by **TEE (Trusted Execution Envir
 
 ---
 
+## 🤖 How to Use PanicShield with AI Agents
+
+### Option A: Claude Code (Recommended)
+
+1. Open your terminal
+2. Navigate to your project folder
+3. Run:
+   ```bash
+   npx skills add ranimth0707/PanicShield
+   ```
+4. Start Claude Code:
+   ```bash
+   claude
+   ```
+5. Tell your agent: `Login to Agentic Wallet with my email`
+6. Once logged in, you're ready: `Scan my portfolio`
+
+### Option B: OpenClaw (Telegram / Discord)
+
+1. Open your OpenClaw agent chat
+2. Send:
+   ```
+   npx skills add ranimth0707/PanicShield
+   ```
+3. Wait for confirmation (15 skills installed: 1 PanicShield + 14 OKX)
+4. Login to your Agentic Wallet through the agent
+5. Start using PanicShield commands
+
+### Option C: Any MCP-Compatible Agent
+
+PanicShield works with any agent that supports Onchain OS skills. Install the skill, connect your Agentic Wallet, and start scanning.
+
+---
+
 ## 🌐 X Layer Ecosystem Positioning
 
-PanicShield is built **natively on X Layer** — OKX's EVM-compatible Layer 2 — for three strategic reasons:
+PanicShield is built **natively on X Layer** — OKX's EVM compatible Layer 2 for three strategic reasons:
 
 ### 1. Zero Gas Fees = Frictionless Risk Management
+
 Every PanicShield analysis includes a live exit simulation. On Ethereum, simulating + executing a swap costs $5–$50 in gas. On X Layer: **$0**. This makes PanicShield practical for small positions where gas would otherwise eat into exit proceeds.
 
 ### 2. OKB Ecosystem Alignment
+
 X Layer's native token is OKB. PanicShield monitors OKB health as part of every portfolio scan, giving users a ground truth view of the underlying L2 economy before assessing individual tokens.
 
 ### 3. Growing Meme + DeFi Token Ecosystem
-Tokens like XSHIB, XDOG, and other X Layer-native assets are emerging rapidly. PanicShield targets exactly this segment — early stage, high volatility tokens where exit timing matters most and panic selling is highest.
+
+Tokens like XSHIB, XDOG, and other X Layer-native assets are emerging rapidly. PanicShield targets exactly this segment early stage, high volatility tokens where exit timing matters most and panic selling is highest.
 
 ### 4. Native Agentic Wallet Integration
-The OKX Agentic Wallet is a first-class citizen on X Layer. With TEE-secured signing and zero gas, PanicShield can go from analysis → simulation → execution in a single agent session without the user ever touching a hardware wallet or browser extension.
+
+The OKX Agentic Wallet is a first class citizen on X Layer. With TEE secured signing and zero gas, PanicShield can go from analysis → simulation → execution in a single agent session without the user ever touching a hardware wallet or browser extension.
 
 ```
 X Layer Ecosystem Value Chain:
@@ -402,6 +488,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 **🛡️ PanicShield — Because panic is the worst exit strategy.**
 
-*Built on [X Layer](https://www.okx.com/xlayer) · Powered by [OKX Onchain OS](https://web3.okx.com/onchainos)
+*Built on [X Layer](https://www.okx.com/xlayer) · Powered by [OKX Onchain OS](https://web3.okx.com/onchainos)*
 
 </div>
